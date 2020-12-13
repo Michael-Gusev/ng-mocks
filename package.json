@@ -92,7 +92,7 @@
     "@angular/compiler": "11.0.3",
     "@angular/core": "11.0.3",
     "@angular/forms": "11.0.3",
-    "@angular/platform-browser": "11.0.3",
+    "@angular/platform-browser": "11.0.4",
     "@angular/platform-browser-dynamic": "11.0.3",
     "@angular/router": "11.0.3",
     "@commitlint/cli": "11.0.0",
