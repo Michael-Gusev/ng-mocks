@@ -5,5 +5,5 @@
   "separateMinorPatch": true,
   "separateMultipleMajor": true,
   "includeForks": true,
-  "additionalBranchPrefix": "{{#if parentDir}}{{parentDir}}-{{/if}}"
+  "additionalBranchPrefix": "{{#if baseDir}}{{baseDir}}/{{else}}root/{{/if}}"
 }
