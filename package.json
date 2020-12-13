@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "@angular/animations": "11.0.3",
-    "@angular/common": "11.0.3",
+    "@angular/common": "11.0.4",
     "@angular/compiler": "11.0.3",
     "@angular/core": "11.0.3",
     "@angular/forms": "11.0.3",
