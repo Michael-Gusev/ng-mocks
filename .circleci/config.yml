@@ -29,25 +29,6 @@ jobs:
       - run:
           name: Tests
           command: WITH_COVERAGE=1 npm run test
-      - run:
-          name: Collecting https://coveralls.io/github/ike18t/ng-mocks
-          command: ./node_modules/.bin/coveralls < test-reports/coverage/lcov/lcov.info
-      - run:
-          name: Collecting https://codecov.io/gh/ike18t/ng-mocks
-          command: ./node_modules/.bin/codecov -f test-reports/coverage/lcov/lcov.info --disable=gcov
-      - run:
-          name: Collecting https://codeclimate.com/github/ike18t/ng-mocks
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
-              > $HOME/codeclimate
-            chmod +x $HOME/codeclimate
-            $HOME/codeclimate before-build
-            $HOME/codeclimate format-coverage \
-              -t lcov test-reports/coverage/lcov/lcov.info \
-              -o test-reports/codeclimate.json
-            $HOME/codeclimate upload-coverage \
-              -r 8d19fbe26762a46ed2e12de542b38738418a96d961cfaca0d757e0a7390ced69 \
-              -i test-reports/codeclimate.json
       - store_test_results:
           path: ./test-reports
       - store_artifacts:
@@ -124,7 +105,7 @@ jobs:
       - restore_cache:
           key: a7-{{ checksum "e2e/a7/package.json" }}-{{ checksum "e2e/a7/package-lock.json" }}
       - run:
-          name: NPM Install for E2E
+          name: NPM Install
           command: npm run i:a7
       - save_cache:
           key: a7-{{ checksum "e2e/a7/package.json" }}-{{ checksum "e2e/a7/package-lock.json" }}
@@ -151,7 +132,7 @@ jobs:
       - restore_cache:
           key: a8-{{ checksum "e2e/a8/package.json" }}-{{ checksum "e2e/a8/package-lock.json" }}
       - run:
-          name: NPM Install for E2E
+          name: NPM Install
           command: npm run i:a8
       - save_cache:
           key: a8-{{ checksum "e2e/a8/package.json" }}-{{ checksum "e2e/a8/package-lock.json" }}
@@ -178,7 +159,7 @@ jobs:
       - restore_cache:
           key: a9-{{ checksum "e2e/a9/package.json" }}-{{ checksum "e2e/a9/package-lock.json" }}
       - run:
-          name: NPM Install for E2E
+          name: NPM Install
           command: npm run i:a9
       - save_cache:
           key: a9-{{ checksum "e2e/a9/package.json" }}-{{ checksum "e2e/a9/package-lock.json" }}
@@ -205,7 +186,7 @@ jobs:
       - restore_cache:
           key: a10-{{ checksum "e2e/a10/package.json" }}-{{ checksum "e2e/a10/package-lock.json" }}
       - run:
-          name: NPM Install for E2E
+          name: NPM Install
           command: npm run i:a10
       - save_cache:
           key: a10-{{ checksum "e2e/a10/package.json" }}-{{ checksum "e2e/a10/package-lock.json" }}
@@ -232,7 +213,7 @@ jobs:
       - restore_cache:
           key: a11-{{ checksum "e2e/a11/package.json" }}-{{ checksum "e2e/a11/package-lock.json" }}
       - run:
-          name: NPM Install for E2E
+          name: NPM Install
           command: npm run i:a11
       - save_cache:
           key: a11-{{ checksum "e2e/a11/package.json" }}-{{ checksum "e2e/a11/package-lock.json" }}
@@ -251,7 +232,30 @@ workflows:
   version: 2
   build:
     jobs:
-      - Core
+      - Core:
+          post-steps:
+            - when:
+              condition: [http://github.com/ike18t/ng-mocks, << pipeline.project.git_url >>]
+              steps:
+                - run:
+                    name: Collecting https://coveralls.io/github/ike18t/ng-mocks
+                    command: ./node_modules/.bin/coveralls < test-reports/coverage/lcov/lcov.info
+                - run:
+                    name: Collecting https://codecov.io/gh/ike18t/ng-mocks
+                    command: ./node_modules/.bin/codecov -f test-reports/coverage/lcov/lcov.info --disable=gcov
+                - run:
+                    name: Collecting https://codeclimate.com/github/ike18t/ng-mocks
+                    command: |
+                      curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+                        > $HOME/codeclimate
+                      chmod +x $HOME/codeclimate
+                      $HOME/codeclimate before-build
+                      $HOME/codeclimate format-coverage \
+                        -t lcov test-reports/coverage/lcov/lcov.info \
+                        -o test-reports/codeclimate.json
+                      $HOME/codeclimate upload-coverage \
+                        -r 8d19fbe26762a46ed2e12de542b38738418a96d961cfaca0d757e0a7390ced69 \
+                        -i test-reports/codeclimate.json
       - 'Angular 5':
           requires:
             - Core
