@@ -43,6 +43,10 @@ describe('double-decorator:without-selector', () => {
   // Because of junit issue we need to return before beforeEach
   // https://github.com/karma-runner/karma-junit-reporter/issues/186
   if ((core as any).ɵivyEnabled) {
+    it('ivy', () => {
+      pending('fails differently');
+    });
+
     return;
   }
 
