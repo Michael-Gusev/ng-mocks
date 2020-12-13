@@ -22,7 +22,7 @@ jobs:
           command: npm run lint
       - run:
           name: Lint 2
-          command: ts:check
+          command: npm run ts:check
       - run:
           name: Build
           command: npm run build
@@ -252,6 +252,9 @@ workflows:
   build:
     jobs:
       - Core
+      - 'Angular 5':
+          requires:
+            - Core
       - 'Angular 6':
           requires:
             - Core
