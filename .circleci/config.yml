@@ -51,7 +51,7 @@ jobs:
           key: a5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
       - run:
           name: NPM Install
-          command: npm run i:a5es5 && npm run a5es2015
+          command: npm run i:a5
       - save_cache:
           key: a5es5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
           paths:
