@@ -1,4 +1,5 @@
 {
+  "dependencyDashboardApproval": true,
   "rangeStrategy": "pin",
   "rebaseWhen": "conflicted",
   "separateMajorMinor": true,
