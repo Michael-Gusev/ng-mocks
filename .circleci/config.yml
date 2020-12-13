@@ -48,14 +48,19 @@ jobs:
       - restore_cache:
           key: root-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
       - restore_cache:
-          key: a5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
+          key: a5es5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}
+      - restore_cache:
+          key: a5es2015-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
       - run:
           name: NPM Install
           command: npm run i:a5
       - save_cache:
-          key: a5es5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
+          key: a5es5-{{ checksum "e2e/a5es5/package.json" }}-{{ checksum "e2e/a5es5/package-lock.json" }}
           paths:
             - ./e2e/a5es5/node_modules
+      - save_cache:
+          key: a5es2015-{{ checksum "e2e/a5es2015/package.json" }}-{{ checksum "e2e/a5es2015/package-lock.json" }}
+          paths:
             - ./e2e/a5es2015/node_modules
       - run:
           name: Spreading Build
