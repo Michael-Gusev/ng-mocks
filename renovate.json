@@ -1,0 +1,8 @@
+{
+  "rangeStrategy": "pin",
+  "rebaseWhen": "conflicted",
+  "separateMajorMinor": true,
+  "separateMinorPatch": true,
+  "separateMultipleMajor": true,
+  "includeForks": true
+}
