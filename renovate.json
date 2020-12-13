@@ -1,5 +1,4 @@
 {
-  "dependencyDashboardApproval": true,
   "rangeStrategy": "pin",
   "rebaseWhen": "conflicted",
   "separateMajorMinor": true,
@@ -8,41 +7,58 @@
   "includeForks": true,
   "packageRules": [
     {
-      "paths": ["+(package.json)", "+(package-lock.json)"],
-      "groupName": "ng-mocks"
+      "enabled": true,
+      "groupName": "ng-mocks",
+      "ignorePaths": ["e2e/**"],
+      "paths": ["+(package.json)", "+(package-lock.json)", ".circleci/config.yml"]
     },
     {
-      "paths": [
-        "+(e2e/a5es5/package.json)",
-        "+(e2e/a5es5/package-lock.json)",
-        "+(e2e/a5es2015/package.json)",
-        "+(e2e/a5es2015/package-lock.json)"
-      ],
-      "groupName": "a5"
+      "enabled": true,
+      "groupName": "a5es5",
+      "baseDir": "+(e2e/a5es5)",
+      "paths": ["+(e2e/a5es5/package.json)", "+(e2e/a5es5/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a6/package.json)", "+(e2e/a6/package-lock.json)"],
-      "groupName": "a6"
+      "enabled": true,
+      "groupName": "a5es2015",
+      "baseDir": "+(e2e/a5es2015)",
+      "paths": ["+(e2e/a5es2015/package.json)", "+(e2e/a5es2015/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a7/package.json)", "+(e2e/a7/package-lock.json)"],
-      "groupName": "a7"
+      "enabled": true,
+      "groupName": "a6",
+      "baseDir": "+(e2e/a6)",
+      "paths": ["+(e2e/a6/package.json)", "+(e2e/a6/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a8/package.json)", "+(e2e/a8/package-lock.json)"],
-      "groupName": "a8"
+      "enabled": true,
+      "groupName": "a7",
+      "baseDir": "+(e2e/a7)",
+      "paths": ["+(e2e/a7/package.json)", "+(e2e/a7/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a9/package.json)", "+(e2e/a9/package-lock.json)"],
-      "groupName": "a9"
+      "enabled": true,
+      "groupName": "a8",
+      "baseDir": "+(e2e/a8)",
+      "paths": ["+(e2e/a8/package.json)", "+(e2e/a8/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a10/package.json)", "+(e2e/a10/package-lock.json)"],
-      "groupName": "a10"
+      "enabled": true,
+      "groupName": "a9",
+      "baseDir": "+(e2e/a9)",
+      "paths": ["+(e2e/a9/package.json)", "+(e2e/a9/package-lock.json)"]
     },
     {
-      "paths": ["+(e2e/a11/package.json)", "+(e2e/a11/package-lock.json)"],
-      "groupName": "a11"
+      "enabled": true,
+      "groupName": "a10",
+      "baseDir": "+(e2e/a10)",
+      "paths": ["+(e2e/a10/package.json)", "+(e2e/a10/package-lock.json)"]
+    },
+    {
+      "enabled": true,
+      "groupName": "a11",
+      "baseDir": "+(e2e/a11)",
+      "paths": ["+(e2e/a11/package.json)", "+(e2e/a11/package-lock.json)"]
     }
   ]
 }
