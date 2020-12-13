@@ -29,25 +29,6 @@ jobs:
       - run:
           name: Tests
           command: WITH_COVERAGE=1 npm run test
-      - run:
-          name: Collecting https://coveralls.io/github/ike18t/ng-mocks
-          command: ./node_modules/.bin/coveralls < test-reports/coverage/lcov/lcov.info
-      - run:
-          name: Collecting https://codecov.io/gh/ike18t/ng-mocks
-          command: ./node_modules/.bin/codecov -f test-reports/coverage/lcov/lcov.info --disable=gcov
-      - run:
-          name: Collecting https://codeclimate.com/github/ike18t/ng-mocks
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
-              > $HOME/codeclimate
-            chmod +x $HOME/codeclimate
-            $HOME/codeclimate before-build
-            $HOME/codeclimate format-coverage \
-              -t lcov test-reports/coverage/lcov/lcov.info \
-              -o test-reports/codeclimate.json
-            $HOME/codeclimate upload-coverage \
-              -r 8d19fbe26762a46ed2e12de542b38738418a96d961cfaca0d757e0a7390ced69 \
-              -i test-reports/codeclimate.json
       - store_test_results:
           path: ./test-reports
       - store_artifacts:
@@ -251,7 +232,27 @@ workflows:
   version: 2
   build:
     jobs:
-      - Core
+      - Core:
+          post-steps:
+            - run:
+                name: Collecting https://coveralls.io/github/ike18t/ng-mocks
+                command: ./node_modules/.bin/coveralls < test-reports/coverage/lcov/lcov.info
+            - run:
+                name: Collecting https://codecov.io/gh/ike18t/ng-mocks
+                command: ./node_modules/.bin/codecov -f test-reports/coverage/lcov/lcov.info --disable=gcov
+            - run:
+                name: Collecting https://codeclimate.com/github/ike18t/ng-mocks
+                command: |
+                  curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+                    > $HOME/codeclimate
+                  chmod +x $HOME/codeclimate
+                  $HOME/codeclimate before-build
+                  $HOME/codeclimate format-coverage \
+                    -t lcov test-reports/coverage/lcov/lcov.info \
+                    -o test-reports/codeclimate.json
+                  $HOME/codeclimate upload-coverage \
+                    -r 8d19fbe26762a46ed2e12de542b38738418a96d961cfaca0d757e0a7390ced69 \
+                    -i test-reports/codeclimate.json
       - 'Angular 5':
           requires:
             - Core
