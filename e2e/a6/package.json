@@ -32,7 +32,7 @@
     "@angular/router": "6.1.10",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.7",
-    "rxjs": "6.2.2",
+    "rxjs": "6.6.3",
     "zone.js": "0.8.29"
   },
   "devDependencies": {
